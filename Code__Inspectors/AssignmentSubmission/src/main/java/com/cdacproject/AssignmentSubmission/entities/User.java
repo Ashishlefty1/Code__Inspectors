@@ -2,6 +2,7 @@ package com.cdacproject.AssignmentSubmission.entities;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -10,11 +11,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 
 @Entity
 @Table(name="users")
-public class User {
+public class User implements UserDetails{
 	
+	private static final long serialVersionUID = 1L;
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private LocalDate cohortStartDate;
@@ -32,6 +37,10 @@ public class User {
 		
 	}
 	
+	public User() {
+	}
+	
+		
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -41,12 +50,14 @@ public class User {
 	public void setCohortStartDate(LocalDate cohortStartDate) {
 		this.cohortStartDate = cohortStartDate;
 	}
-	public String getUserName() {
+	@Override 
+	public String getUsername() {
 		return userName;
 	}
-	public void setUserName(String userName) {
+	public void setUsername(String userName) {
 		this.userName = userName;
 	}
+	@Override
 	public String getPassword() {
 		return password;
 	}
@@ -58,6 +69,33 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", cohortStartDate=" + cohortStartDate + ", userName=" + userName + "]";
+	}
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		List<GrantedAuthority> roles = new ArrayList<>();
+		
+		roles.add(new Authority("ROLE_STUDENT"));
+		return roles ;
+	}
+	@Override 
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }

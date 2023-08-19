@@ -1,0 +1,23 @@
+git Commands
+____________________
+
+https://github.com/Ashishlefty1/Code__Inspectors.git
+
+git config --global --unset user.name
+
+git config --global --unset user.email
+
+git config --global --unset credential.helper
+
+
+git config --global  user.name
+git config --global  user.email
+
+git remote -v
+git remote add origin https://github.com/Ashishlefty1/Code__Inspectors.git
+
+
+git config core.autocrlf
+
+git config --global core.autocrlf false
+git config --local core.autocrlf false

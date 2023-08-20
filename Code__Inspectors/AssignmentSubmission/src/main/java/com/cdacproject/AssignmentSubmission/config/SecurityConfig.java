@@ -30,6 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override // This method is for authorization
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
+		super.configure(httpSecurity);
 
 	}
 
@@ -39,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //		return new BCryptPasswordEncoder();
 //		
 //	}
-// 
+ 
 
   }
  

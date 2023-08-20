@@ -1,3 +1,26 @@
+Spring initializer:
+(SNAPSHOT)2.6.3
+
+Spring Security SECURITY
+Highly customizable authentication and access-control framework for Spring applications.
+Spring Boot DevTools DEVELOPER TOOLS
+Provides fast application restarts, LiveReload, and configurations for enhanced development experience.
+Spring Web WEB
+Build web, including RESTful, applications using Spring MVC. Uses Apache Tomcat as the default embedded container.
+MySQL Driver SQL
+MySQL JDBC driver.
+Lombok DEVELOPER TOOLS
+Java annotation library which helps to reduce boilerplate code.
+Spring Data JPA SQL
+Persist data in SQL stores with Java Persistence API using Spring Data and Hibernate.
+
+mySQL:
+
+select CURRENT_USER(); 
+system cls;
+
+
+
 git Commands
 ____________________
 
@@ -21,3 +44,5 @@ git config core.autocrlf
 
 git config --global core.autocrlf false
 git config --local core.autocrlf false
+
+

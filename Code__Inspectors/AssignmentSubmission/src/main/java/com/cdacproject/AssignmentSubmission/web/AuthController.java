@@ -20,37 +20,30 @@ import com.cdacproject.AssignmentSubmission.util.JwtUtil;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
-	
+
 	@Autowired
-	private AuthenticationManager authenticationManager ;
-	
+	private AuthenticationManager authenticationManager;
+
 	@Autowired
 	private JwtUtil jwtUtil;
-	
-	
+
 	@PostMapping("login")
-	public ResponseEntity<?>login (@RequestBody AuthCredentialsRequest request){
-		
-		try{
-			Authentication authenticate = authenticationManager
-					.authenticate(
-							new UsernamePasswordAuthenticationToken(
-									request.getUsername(), request.getPassword()
-							 )
-					);
-			
-			User user = (User)authenticate.getPrincipal();
-			
-			return ResponseEntity.ok().header(HttpHeaders.AUTHORIZATION,jwtUtil.generateToken(user)
-					)
-					.body(user);
-			
-		} catch(BadCredentialsException ex){
-			
+	public ResponseEntity<?> login(@RequestBody AuthCredentialsRequest request) {
+
+		try {
+			Authentication authenticate = authenticationManager.authenticate(
+					new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
+
+			User user = (User) authenticate.getPrincipal();
+
+			return ResponseEntity.ok().header(HttpHeaders.AUTHORIZATION, jwtUtil.generateToken(user)).body(user);
+
+		} catch (BadCredentialsException ex) {
+
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-			
+
 		}
-		
+
 	}
 
 }

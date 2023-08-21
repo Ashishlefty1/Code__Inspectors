@@ -74,6 +74,15 @@ public class Assignment {
 		return "Assignment [branch=" + branch + ", codeReviewVideoUrl=" + codeReviewVideoUrl + ", gitHubUrl="
 				+ gitHubUrl + ", status=" + status + "]";
 	}
+
+
+
+
+	public void setUser(User user) {
+	
+		this.user = user;
+		
+	}
 	
 	
 	

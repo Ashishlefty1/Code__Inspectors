@@ -14,7 +14,18 @@ Java annotation library which helps to reduce boilerplate code.
 Spring Data JPA SQL
 Persist data in SQL stores with Java Persistence API using Spring Data and Hibernate.
 
+React:
+------------------------------
+add this in package.json below private tag to enable cors(only use in development)
+"proxy": "http://localhost:8080",
+
+remember to wrap index.js <app/> component to wrap in BrowserRouter tag
+ <BrowserRouter>
+      <App />
+    </BrowserRouter>
+
 mySQL:
+-----------------------
 
 select CURRENT_USER(); 
 system cls;
@@ -27,6 +38,13 @@ insert into users( cohort_start_date, password, username) values('2023-8-21',''a
 
 git Commands
 ____________________
+
+github token : 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
+
+to authenticate without password support
+git remote set-url origin https://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@github.com/Ashishlefty1/Code__Inspectors
+
+
 
 https://github.com/Ashishlefty1/Code__Inspectors.git
 

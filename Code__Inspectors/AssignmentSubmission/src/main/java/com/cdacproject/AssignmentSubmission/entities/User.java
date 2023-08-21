@@ -23,16 +23,18 @@ public class User implements UserDetails{
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private LocalDate cohortStartDate;
-	private String userName;
+	private String username;
 	private String password;
+	
+	
 	public Long getId() {
 		return id;
 	}
-	public User(Long id, LocalDate cohortStartDate, String userName, String password, List<Assignment> assignment) {
+	public User(Long id, LocalDate cohortStartDate, String username, String password, List<Assignment> assignment) {
 		super();
 		this.id = id;
 		this.cohortStartDate = cohortStartDate;
-		this.userName = userName;
+		this.username = username;
 		this.password = password;
 		
 	}
@@ -52,10 +54,10 @@ public class User implements UserDetails{
 	}
 	@Override 
 	public String getUsername() {
-		return userName;
+		return username;
 	}
 	public void setUsername(String userName) {
-		this.userName = userName;
+		this.username = userName;
 	}
 	@Override
 	public String getPassword() {
@@ -68,7 +70,7 @@ public class User implements UserDetails{
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", cohortStartDate=" + cohortStartDate + ", userName=" + userName + "]";
+		return "User [id=" + id + ", cohortStartDate=" + cohortStartDate + ", userName=" + username + "]";
 	}
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

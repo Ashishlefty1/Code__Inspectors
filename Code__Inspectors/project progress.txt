@@ -19,6 +19,10 @@ mySQL:
 select CURRENT_USER(); 
 system cls;
 
+use assignment_submission_db;
+desc users;
+
+insert into users( cohort_start_date, password, username) values('2023-8-21',''asdf','ash');
 
 
 git Commands

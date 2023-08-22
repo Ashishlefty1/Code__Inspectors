@@ -6,13 +6,17 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -24,11 +28,20 @@ public class User implements UserDetails{
 	private Long id;
 	private LocalDate cohortStartDate;
 	private String username;
+	@JsonIgnore
 	private String password;
+
+	@OneToMany(	fetch = FetchType.EAGER,mappedBy = "user")
+	@JsonIgnore
+	private List<Authority> authorities = new ArrayList<>();
+	
 	
 	
 	public Long getId() {
 		return id;
+	}
+	public void setAuthorities(List<Authority> authorities) {
+		this.authorities = authorities;
 	}
 	public User(Long id, LocalDate cohortStartDate, String username, String password, List<Assignment> assignment) {
 		super();
@@ -36,6 +49,8 @@ public class User implements UserDetails{
 		this.cohortStartDate = cohortStartDate;
 		this.username = username;
 		this.password = password;
+		
+		
 		
 	}
 	
@@ -72,12 +87,12 @@ public class User implements UserDetails{
 	public String toString() {
 		return "User [id=" + id + ", cohortStartDate=" + cohortStartDate + ", userName=" + username + "]";
 	}
+	
+	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		List<GrantedAuthority> roles = new ArrayList<>();
 		
-		roles.add(new Authority("ROLE_STUDENT"));
-		return roles ;
+		return authorities ;
 	}
 	@Override 
 	public boolean isAccountNonExpired() {

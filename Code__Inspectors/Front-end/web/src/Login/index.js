@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { useLocalState } from '../util/useLocalStorage'
+import ajax from '../Services/fetchService'
+import { Button, Col, Container, Row, Form } from 'react-bootstrap'
 
 const Login = () => {
   const [username, setUsername] = useState('')
@@ -12,7 +14,7 @@ const Login = () => {
       username: username,
       password: password,
     }
-
+    //ajax('api/auth/login', 'POST', jwt, reqBody)
     fetch('api/auth/login', {
       headers: {
         'Content-Type': 'application/json',
@@ -27,6 +29,7 @@ const Login = () => {
       })
       .then(([body, headers]) => {
         setJwt(headers.get('authorization'))
+        window.location.href = 'dashboard'
       })
       .catch((message) => {
         alert(message)
@@ -35,33 +38,62 @@ const Login = () => {
 
   return (
     <>
-      <div>
-        <label htmlFor='username'>Username</label>
-        <input
-          type='email'
-          id='username'
-          value={username}
-          onChange={(e) => {
-            setUsername(e.target.value)
-          }}
-        />
-      </div>
-      <div>
-        <label htmlFor='password'>Password</label>
-        <input
-          type='password'
-          id='username'
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value)
-          }}
-        />
-      </div>
-      <div>
-        <button id='submit' type='button' onClick={() => sendLoginRequest()}>
-          Login
-        </button>
-      </div>
+      <Container className='mt-5 '>
+        <Row className='justify-content-center'>
+          <Col md='8' lg='6'>
+            <Form.Group className='mb-5' controlId='username'>
+              <Form.Label className='fs-4'>Username</Form.Label>
+              <Form.Control
+                type='email'
+                id='username'
+                size='lg'
+                placeholder='email@gmail.com'
+                value={username}
+                onChange={(e) => {
+                  setUsername(e.target.value)
+                }}
+              />
+            </Form.Group>
+          </Col>
+        </Row>
+
+        <Row className='justify-content-center'>
+          <Col md='8' lg='6'>
+            <Form.Group className='mb-3' controlId='password'>
+              <Form.Label className='fs-4'>Password</Form.Label>
+              <Form.Control
+                type='password'
+                id='username'
+                value={password}
+                size='lg'
+                placeholder='password'
+                onChange={(e) => {
+                  setPassword(e.target.value)
+                }}
+              />
+            </Form.Group>
+          </Col>
+        </Row>
+
+        <Row className='justify-content-center'>
+          <Col
+            md='6'
+            className='mt-2 d-flex flex-column gap-2 flex-md-row justify-content-md-between'>
+            <Button
+              id='submit'
+              type='button'
+              onClick={() => sendLoginRequest()}>
+              Login
+            </Button>
+            <Button
+              variant='secondary'
+              type='button'
+              onClick={() => sendLoginRequest()}>
+              Exit
+            </Button>
+          </Col>
+        </Row>
+      </Container>
     </>
   )
 }

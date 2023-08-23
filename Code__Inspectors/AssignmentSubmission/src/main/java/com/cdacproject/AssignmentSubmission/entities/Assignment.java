@@ -7,6 +7,7 @@ public class Assignment {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	private String name;
 	private String status;
 	private String githubUrl;
 	private String branch;
@@ -19,28 +20,17 @@ public class Assignment {
 		return status;
 	}
 
-
-
-
 	public String getGithubUrl() {
 		return githubUrl;
 	}
-
-
-
 
 	public void setGithubUrl(String githubUrl) {
 		this.githubUrl = githubUrl;
 	}
 
-
-
-
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
-
 
 
 	public Long getId() {
@@ -51,9 +41,6 @@ public class Assignment {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-
-
 
 	public User getUser() {
 		return user;
@@ -72,8 +59,6 @@ public class Assignment {
 	}
 
 
-
-
 	public String getCodeReviewVideoUrl() {
 		return codeReviewVideoUrl;
 	}
@@ -85,22 +70,19 @@ public class Assignment {
 		this.codeReviewVideoUrl = codeReviewVideoUrl;
 	}
 	
-	
+	public String getName() {
+		return name;
+	}
 
-
-
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	@Override
 	public String toString() {
 		return "Assignment [id=" + id + ", status=" + status + ", gitHubUrl=" + githubUrl + ", branch=" + branch
 				+ ", codeReviewVideoUrl=" + codeReviewVideoUrl + ", user=" + user + "]";
 	}
-
-
-
-
-
-
 
 
 	public void setUser(User user) {

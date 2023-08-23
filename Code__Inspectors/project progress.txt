@@ -24,6 +24,9 @@ remember to wrap index.js <app/> component to wrap in BrowserRouter tag
       <App />
     </BrowserRouter>
 
+
+npm install react-bootstrap bootstrap
+
 mySQL:
 -----------------------
 
@@ -47,7 +50,7 @@ to authenticate without password support
 
 git remote set-url origin https://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@github.com/Ashishlefty1/Code__Inspectors
 
-
+git remote set-url origin https://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@github.com/Ashishlefty1/Code__Inspectors
 
 https://github.com/Ashishlefty1/Code__Inspectors.git
 

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cdacproject.AssignmentSubmission.dto.AssignmentResponseDto;
 import com.cdacproject.AssignmentSubmission.entities.Assignment;
 import com.cdacproject.AssignmentSubmission.entities.User;
 import com.cdacproject.AssignmentSubmission.service.AssignmentService;
@@ -40,8 +41,8 @@ public class AssignmentController {
 	@GetMapping("{assignmentId}")
 	public ResponseEntity<?> getAssignments( @PathVariable Long assignmentId , @AuthenticationPrincipal User user){
 		Optional<Assignment> assignmentOpt = assignmentService.findById(assignmentId);
-	
-		return ResponseEntity.ok(assignmentOpt.orElse(new Assignment())); 
+		
+		return ResponseEntity.ok(new AssignmentResponseDto(assignmentOpt.orElse(new Assignment()))); 
 	}
 	
 	@PutMapping("{assignmentId}")

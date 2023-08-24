@@ -27,6 +27,8 @@ remember to wrap index.js <app/> component to wrap in BrowserRouter tag
 
 npm install react-bootstrap bootstrap
 
+npm install -g react-scripts --save
+
 mySQL:
 -----------------------
 
@@ -74,3 +76,13 @@ git config --global core.autocrlf false
 git config --local core.autocrlf false
 
 
+Windows command prompt
+__________________________
+
+
+
+to check is port busy:
+netstat -ano | find ":3000"
+o/p:TCP    0.0.0.0:3000           0.0.0.0:0              LISTENING       8396
+
+taskkill /pid 8396 /f

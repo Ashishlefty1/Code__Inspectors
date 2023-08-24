@@ -18,6 +18,7 @@ const AssignmentView = () => {
   const [jwt, setJwt] = useLocalState('', 'jwt')
   const [assignment, setAssignment] = useState({ branch: '', githubUrl: '' })
 
+  const [assignmentEnums,setAssignmentEnums]= useState([]) 
   function updateAssignment(prop, value) {
     const newAssignment = { ...assignment }
     newAssignment[prop] = value
@@ -56,12 +57,15 @@ const AssignmentView = () => {
       //   .then((response) => {
       //     if (response.status === 200) return response.json()
       //   })
-      .then((assignmentsData) => {
+      .then((assignmentResponse) => {
+       let assignmentsData = assignmentResponse.assignment
         if (assignmentsData.branch === null) assignmentsData.branch = ''
         if (assignmentsData.githubUrl === null) assignmentsData.githubUrl = ''
 
         setAssignment(assignmentsData)
+        setAssignmentEnums(assignmentResponse.assignmentEnums)
         console.log(assignmentsData)
+        console.log(assignmentResponse)
       })
   }, [])
 
@@ -91,9 +95,9 @@ const AssignmentView = () => {
                 id='assignmentName'
                 variant={'info'}
                 title='Assignment 1'>
-                {['1', '2', '3', '4', '5', '6', '7'].map((assignmentNum) => (
-                  <Dropdown.Item eventKey={assignmentNum}>
-                    {assignmentNum}
+                {assignmentEnums.map((assignmentEnum) => (
+                  <Dropdown.Item eventKey={assignmentEnum.assignmentNum}>
+                    {assignmentEnum.assignmentNum}
                   </Dropdown.Item>
                 ))}
               </DropdownButton>

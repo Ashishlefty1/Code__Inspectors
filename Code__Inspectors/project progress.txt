@@ -44,15 +44,15 @@ insert into users( cohort_start_date, password, username) values('2023-8-21',''a
 git Commands
 ____________________
 
-github token : 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
+github token : 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
 
-new token : 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
+new token : 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
 
 to authenticate without password support
 
 git remote set-url origin https://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@github.com/Ashishlefty1/Code__Inspectors
 
-git remote set-url origin https://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@github.com/Ashishlefty1/Code__Inspectors
+git remote set-url origin https://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@github.com/Ashishlefty1/Code__Inspectors
 
 https://github.com/Ashishlefty1/Code__Inspectors.git
 

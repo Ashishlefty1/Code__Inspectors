@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.cdacproject.AssignmentSubmission.entities.Assignment;
 import com.cdacproject.AssignmentSubmission.entities.User;
+import com.cdacproject.AssignmentSubmission.enums.AssignmentStatusEnum;
 import com.cdacproject.AssignmentSubmission.repository.AssignmentRepository;
 
 @Service
@@ -18,7 +19,7 @@ public class AssignmentService {
 	
 	public Assignment save(User user) {
 		Assignment assignment =new Assignment();
-		assignment.setStatus("Pending");
+		assignment.setStatus(AssignmentStatusEnum.PENDING_SUBMISSION.getStatus());
 		assignment.setUser(user);
 		
 		return assignmentRepo.save(assignment);

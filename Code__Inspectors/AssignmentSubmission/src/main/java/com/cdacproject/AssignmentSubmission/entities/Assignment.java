@@ -24,6 +24,10 @@ public class Assignment {
 		return githubUrl;
 	}
 
+	public void setNumber(Integer number) {
+		this.number = number;
+	}
+
 	public void setGithubUrl(String githubUrl) {
 		this.githubUrl = githubUrl;
 	}
@@ -36,6 +40,7 @@ public class Assignment {
 	public Long getId() {
 		return id;
 	}
+
 
 
 	public void setId(Long id) {

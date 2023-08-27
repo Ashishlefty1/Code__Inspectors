@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { useLocalState } from '../util/useLocalStorage'
 import Card from 'react-bootstrap/Card'
 import ajax from '../Services/fetchService'
-import { Badge, Button, Col, Row } from 'react-bootstrap'
+import { Badge, Button, Col, Container, Row } from 'react-bootstrap'
 
-const Dashboard = () => {
+const CodeReviewerDashboard = () => {
   const [jwt, setJwt] = useLocalState('', 'jwt')
   const [assignments, setAssignments] = useState(null)
 
@@ -33,7 +33,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div style={{ margin: '2em' }}>
+    <Container>
       <Row>
         <Col>
           <div
@@ -47,11 +47,12 @@ const Dashboard = () => {
           </div>
         </Col>
       </Row>
-      <div className='mb-4'>
-        <Button onClick={() => createAssignment()}>
-          Submit New Assignment
-        </Button>
-      </div>
+      <Row>
+        <Col>
+          <div className='h1'>Code Reviewer DashBoard</div>
+        </Col>
+      </Row>
+
       {assignments ? (
         <div
           className='d-grid gap-5'
@@ -93,8 +94,8 @@ const Dashboard = () => {
       ) : (
         <></>
       )}
-    </div>
+    </Container>
   )
 }
 
-export default Dashboard
+export default CodeReviewerDashboard

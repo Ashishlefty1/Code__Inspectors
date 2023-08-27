@@ -29,6 +29,8 @@ npm install react-bootstrap bootstrap
 
 npm install -g react-scripts --save
 
+npm install -g jwt-decode
+
 mySQL:
 -----------------------
 

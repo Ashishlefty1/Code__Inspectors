@@ -40,8 +40,11 @@ public class AuthController {
 					new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
 
 			User user = (User) authenticate.getPrincipal();
-
-			return ResponseEntity.ok().header(HttpHeaders.AUTHORIZATION, jwtUtil.generateToken(user)).body(user);
+			user.setPassword(null);
+			return ResponseEntity.ok().header(HttpHeaders.AUTHORIZATION, 
+					jwtUtil.generateToken(user)
+					)
+					.body(user);
 
 		} catch (BadCredentialsException ex) {
 

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.cdacproject.AssignmentSubmission.entities.Assignment;
 import com.cdacproject.AssignmentSubmission.entities.User;
 import com.cdacproject.AssignmentSubmission.enums.AssignmentStatusEnum;
+import com.cdacproject.AssignmentSubmission.enums.AuthorityEnum;
 import com.cdacproject.AssignmentSubmission.repository.AssignmentRepository;
 
 @Service
@@ -20,13 +21,13 @@ public class AssignmentService {
 	public Assignment save(User user) {
 		Assignment assignment = new Assignment();
 		assignment.setStatus(AssignmentStatusEnum.PENDING_SUBMISSION.getStatus());
-		assignment.setNumber(findNextAssignmentTOSubmit(user));
+		assignment.setNumber(findNextAssignmentToSubmit(user));
 		assignment.setUser(user);
 
 		return assignmentRepo.save(assignment);
 	}
 
-	private Integer findNextAssignmentTOSubmit(User user) {
+	private Integer findNextAssignmentToSubmit(User user) {
 
 		Set<Assignment> assignmentsByUser = assignmentRepo.findByUser(user);
 		if (assignmentsByUser == null) {
@@ -48,8 +49,24 @@ public class AssignmentService {
 	}
 
 	public Set<Assignment> findByUser(User user) {
-
-		return assignmentRepo.findByUser(user);
+		
+		
+			
+				//load Assignment if Code Reviewer logged in
+		boolean hasCodeReviewerRole = user.getAuthorities()
+		.stream()
+		.filter(auth -> AuthorityEnum.ROLE_CODE_REVIEWER.name().equals(auth.getAuthority()))
+		.count()> 0 ;
+		
+		if(hasCodeReviewerRole) {
+			return assignmentRepo.findByCodeReviewer(user);
+			
+		}else {	
+			//load Assignment if student logged in
+			
+			return assignmentRepo.findByUser(user);
+			}
+	
 	}
 
 	public Optional<Assignment> findById(Long assignmentId) {

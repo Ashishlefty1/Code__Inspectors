@@ -15,6 +15,16 @@ public class Assignment {
 	@ManyToOne(optional=false)
 	private User user;
 	
+	@ManyToOne(optional=true)
+	private User codeReviewer;
+
+	public User getCodeReviewer() {
+		return codeReviewer;
+	}
+
+	public void setCodeReviewer(User codeReviewer) {
+		this.codeReviewer = codeReviewer;
+	}
 
 	public String getStatus() {
 		return status;

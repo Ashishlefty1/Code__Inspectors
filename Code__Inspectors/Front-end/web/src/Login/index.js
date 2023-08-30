@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import { useLocalState } from '../util/useLocalStorage'
 import ajax from '../Services/fetchService'
 import { Button, Col, Container, Row, Form } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
+  const navigate = useNavigate()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
@@ -14,7 +16,7 @@ const Login = () => {
       username: username,
       password: password,
     }
-    //ajax('api/auth/login', 'POST', jwt, reqBody)
+    ajax('api/auth/login', 'POST', jwt, reqBody)
     fetch('api/auth/login', {
       headers: {
         'Content-Type': 'application/json',
@@ -29,7 +31,7 @@ const Login = () => {
       })
       .then(([body, headers]) => {
         setJwt(headers.get('authorization'))
-        window.location.href = 'dashboard'
+        navigate('/dashboard')
       })
       .catch((message) => {
         alert(message)
@@ -88,7 +90,7 @@ const Login = () => {
             <Button
               variant='secondary'
               type='button'
-              onClick={() => sendLoginRequest()}>
+              onClick={() => navigate('/')}>
               Exit
             </Button>
           </Col>

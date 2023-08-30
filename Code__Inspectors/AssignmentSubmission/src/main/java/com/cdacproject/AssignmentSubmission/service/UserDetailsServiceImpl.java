@@ -1,7 +1,7 @@
 package com.cdacproject.AssignmentSubmission.service;
 
 
-import java.util.Optional;
+//import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -11,9 +11,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.cdacproject.AssignmentSubmission.entities.User;
+//import com.cdacproject.AssignmentSubmission.entities.User;
 import com.cdacproject.AssignmentSubmission.repository.UserRepository;
-import com.cdacproject.AssignmentSubmission.util.CustomPasswordEncoder;
+//import com.cdacproject.AssignmentSubmission.util.CustomPasswordEncoder;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -31,8 +31,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		return userRepo.findByusername(username).orElseThrow(()->new UsernameNotFoundException("Invalid credentials"));
 		
-		// userOpt.orElseThrow(()->new UsernameNotFoundException("Invalid credentials "));  
-	//  return Optional<User> userOpt
 	}
 
 }

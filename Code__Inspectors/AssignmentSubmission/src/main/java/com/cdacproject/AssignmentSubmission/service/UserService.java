@@ -1,16 +1,16 @@
-package com.codereview.AssignmentSubmissionApp.service;
+package com.cdacproject.AssignmentSubmission.service;
 
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.codereview.AssignmentSubmissionApp.domain.Authority;
-import com.codereview.AssignmentSubmissionApp.domain.User;
-import com.codereview.AssignmentSubmissionApp.dto.UserDto;
-import com.codereview.AssignmentSubmissionApp.repository.AuthorityRepository;
-import com.codereview.AssignmentSubmissionApp.repository.UserRepository;
-import com.codereview.AssignmentSubmissionApp.util.CustomPasswordEncoder;
+import com.cdacproject.AssignmentSubmission.entities.Authority;
+import com.cdacproject.AssignmentSubmission.entities.User;
+import com.cdacproject.AssignmentSubmission.dto.UserDto;
+//import com.cdacproject.AssignmentSubmission.repository.AuthorityRepository;
+import com.cdacproject.AssignmentSubmission.repository.UserRepository;
+import com.cdacproject.AssignmentSubmission.util.CustomPasswordEncoder;
 
 @Service
 public class UserService {
@@ -18,19 +18,19 @@ public class UserService {
 	@Autowired
     private UserRepository userRepo;
    
-    @Autowired
-    private AuthorityRepository authorityRepo;
+//    @Autowired
+//    private AuthorityRepository authorityRepo;
     @Autowired
     private CustomPasswordEncoder customPasswordEncoder;
 	
 		public Optional<User> findUserByUsername(String username) {
-			return userRepo.findByUsername(username);
+			return userRepo.findByusername(username);
 		}
 		
 		 public User createUser(UserDto userDto) {
 		        User newUser = new User();
 		        newUser.setUsername(userDto.getUsername());
-		        newUser.setName(userDto.getName());
+		        //newUser.setName(userDto.getName());
 		        String encodedPassword = customPasswordEncoder.getPasswordEncoder().encode(userDto.getPassword());
 		        newUser.setPassword(encodedPassword);
 		       User persistUser = userRepo.save(newUser);
@@ -45,7 +45,7 @@ public class UserService {
 		       
 		        
 		        authority.setUser(newUser);
-		        authorityRepo.save(authority);
+		       // authorityRepo.save(authority);
 		        
 		        return  persistUser;
 

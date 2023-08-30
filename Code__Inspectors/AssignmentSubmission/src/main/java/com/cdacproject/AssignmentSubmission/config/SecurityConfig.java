@@ -15,7 +15,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.AuthenticationEntryPoint;
+//import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.cdacproject.AssignmentSubmission.filter.JwtFilter;
@@ -52,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http = http.csrf().disable().cors().disable();
 		http = http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and();
 		
-		AuthenticationEntryPoint auth;
+		//AuthenticationEntryPoint auth;
 		
 		http = http.exceptionHandling().authenticationEntryPoint((request,response,ex)->{
 			response.sendError(HttpServletResponse.SC_UNAUTHORIZED,ex.getMessage());

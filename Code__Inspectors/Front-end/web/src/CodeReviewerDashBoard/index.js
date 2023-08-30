@@ -4,13 +4,16 @@ import Card from 'react-bootstrap/Card'
 import ajax from '../Services/fetchService'
 import { Badge, Button, Col, Container, Row } from 'react-bootstrap'
 import jwt_decode from 'jwt-decode'
+import StatusBadge from '../StatusBadge'
+import { useNavigate } from 'react-router-dom'
 
 const CodeReviewerDashboard = () => {
+  const navigate = useNavigate()
   const [jwt, setJwt] = useLocalState('', 'jwt')
   const [assignments, setAssignments] = useState(null)
 
   function editReview(assignment) {
-    window.location.href = `/assignments/${assignment.id} `
+    navigate(`/assignments/${assignment.id} `)
   }
 
   function claimAssignment(assignment) {
@@ -41,7 +44,7 @@ const CodeReviewerDashboard = () => {
 
   function createAssignment() {
     ajax('api/assignments', 'POST', jwt).then((assignment) => {
-      window.location.href = `/assignments/${assignment.id}`
+      navigate(`/assignments/${assignment.id}`)
     })
   }
 
@@ -54,7 +57,7 @@ const CodeReviewerDashboard = () => {
             style={{ cursor: 'pointer' }}
             onClick={() => {
               setJwt(null)
-              window.location.href = '/login'
+              navigate('/login')
             }}>
             Logout
           </div>
@@ -84,9 +87,7 @@ const CodeReviewerDashboard = () => {
                   <Card.Body className='d-flex flex-column justify-content-around'>
                     <Card.Title>Assignment#{assignment.number}</Card.Title>
                     <div className='d-flex align-item-start'>
-                      <Badge pill bg='info' style={{ fontSize: '1em' }}>
-                        {assignment.status}
-                      </Badge>
+                      <StatusBadge text={assignment.status} />
                     </div>
 
                     <Card.Text style={{ marginTop: '1em' }}>
@@ -133,9 +134,7 @@ const CodeReviewerDashboard = () => {
                   <Card.Body className='d-flex flex-column justify-content-around'>
                     <Card.Title>Assignment#{assignment.number}</Card.Title>
                     <div className='d-flex align-item-start'>
-                      <Badge pill bg='info' style={{ fontSize: '1em' }}>
-                        {assignment.status}
-                      </Badge>
+                      <StatusBadge text={assignment.status} />
                     </div>
 
                     <Card.Text style={{ marginTop: '1em' }}>
@@ -183,9 +182,7 @@ const CodeReviewerDashboard = () => {
                   <Card.Body className='d-flex flex-column justify-content-around'>
                     <Card.Title>Assignment#{assignment.number}</Card.Title>
                     <div className='d-flex align-item-start'>
-                      <Badge pill bg='info' style={{ fontSize: '1em' }}>
-                        {assignment.status}
-                      </Badge>
+                      <StatusBadge text={assignment.status} />
                     </div>
 
                     <Card.Text style={{ marginTop: '1em' }}>
@@ -202,7 +199,7 @@ const CodeReviewerDashboard = () => {
                     <Button
                       variant='secondary'
                       onClick={() => {
-                        window.location.href = `/assignments/${assignment.id}`
+                        navigate(`/assignments/${assignment.id}`)
                       }}>
                       View
                     </Button>
